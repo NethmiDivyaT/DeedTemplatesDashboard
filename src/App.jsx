@@ -5,7 +5,8 @@ import Blank from './pages/Blank'
 import DeedTemplate from './pages/DeedTemplate/deedtemplate'
 import Dashboard from './pages/Dashboard'
 import MainLayout from './layout/MainLayout'
-import  DeedForm from './pages/DeedTemplate/DeedOfTransfer/deedOfTransferForm'
+import DeedForm from './pages/DeedTemplate/DeedOfTransfer/deedOfTransferForm'
+import ScanDeed from './pages/ScanDeeds/scandeed'
 
 function App() {
     return (
@@ -14,7 +15,7 @@ function App() {
                 <Route path="/" element={<MainLayout />}>
                     <Route index element={<Dashboard />} />
                     <Route path="deeds" element={<DeedTemplate />} />
-                    <Route path="products" element={<Blank />} />
+                    <Route path="scandeed" element={<ScanDeed />} />
                     <Route path="customers" element={<Blank />} />
                     <Route path="settings" element={<Blank />} />
                     <Route path="stats" element={<Blank />} />

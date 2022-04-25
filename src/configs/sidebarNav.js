@@ -12,10 +12,10 @@ const sidebarNav = [
         text: 'Deed Templates'
     },
     {
-        link: '/products',
-        section: 'products',
+        link: '/scandeed',
+        section: 'scandeed',
         icon: <i className='bx bx-cube'></i>,
-        text: 'Products'
+        text: 'Scan Deed'
     },
     {
         link: '/customers',
