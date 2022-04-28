@@ -4,8 +4,6 @@ import { Row, Col, Container, Card, Button } from 'react-bootstrap'
 //import { Deedimg } from '../assets/images/deed.jpg'
 import { Outlet, Link } from "react-router-dom";
 
-
-
 const MainLayout = () => {
     return (
         <>
