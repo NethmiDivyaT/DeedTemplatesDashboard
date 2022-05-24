@@ -16,6 +16,18 @@ export default function Form3({ setFormState }) {
       <Row>
         <Col>
           <Form>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Value</Form.Label>
+              <Form.Control
+                type="text"
+                id="value"
+                onChange={onChange("value")}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Date</Form.Label>
+              <Form.Control type="date" id="date" onChange={onChange("date")} />
+            </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Number of Lands</Form.Label>
               <Form.Control

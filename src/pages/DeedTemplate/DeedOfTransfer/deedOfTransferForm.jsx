@@ -27,7 +27,7 @@ class DeedForm extends React.Component {
     }
   };
 
-  downloadTxtFile = () => {
+  /*downloadTxtFile = () => {
     const name = document.getElementById("name");
     const position = document.getElementById("position");
     const address = document.getElementById("address");
@@ -40,7 +40,7 @@ class DeedForm extends React.Component {
     element.download = "myFile.doc";
     document.body.appendChild(element);
     element.click();
-  };
+  };*/
   render() {
     return (
       <div>
@@ -65,10 +65,15 @@ class DeedForm extends React.Component {
               date={this.state.date}
               noOfLands={this.state.noOfLands}
               pregistration={this.state.pregistration}
+              vname={this.state.vname}
+              vnic={this.state.vnic}
+              vaddress={this.state.vaddress}
+              propdetails={this.state.propdetails}
+              pname={this.state.pregistration}
+              paddress={this.state.paddress}
+              detailsOFDeedObtained={this.state.detailsOFDeedObtained}
+              pvalue={this.state.pvalue}
             />
-            <Button variant="success" onClick={this.downloadTxtFile}>
-              Download as MS Word
-            </Button>
           </Col>
         </Row>
       </div>

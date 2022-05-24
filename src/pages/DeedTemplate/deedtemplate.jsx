@@ -3,12 +3,14 @@ import { Row, Col, Container, Card, Button } from 'react-bootstrap'
 //import 'bootstrap/dist/css/bootstrap.min.css';
 //import { Deedimg } from '../assets/images/deed.jpg'
 import { Outlet, Link } from "react-router-dom";
+import './DeedOfTransfer/deedOfTransfer.css'
 
 const MainLayout = () => {
     return (
         <>
             <div>
-            <Container fluid>
+                <Container fluid>
+                <Link to="/editor" ><Button className="buttonT" variant="success"> Customize Templates </Button></Link>
                 <Row>
                     <Col md={3}>
                     <Card style={{width: '250px'}}>

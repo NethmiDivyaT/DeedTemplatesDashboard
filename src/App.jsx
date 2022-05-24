@@ -7,6 +7,8 @@ import Dashboard from './pages/Dashboard'
 import MainLayout from './layout/MainLayout'
 import DeedForm from './pages/DeedTemplate/DeedOfTransfer/deedOfTransferForm'
 import ScanDeed from './pages/ScanDeeds/scandeed'
+import Editor from './pages/DeedTemplate/customizeEditor.jsx'
+import Home from './components/home/home'
 
 function App() {
     return (
@@ -14,12 +16,14 @@ function App() {
             <Routes>
                 <Route path="/" element={<MainLayout />}>
                     <Route index element={<Dashboard />} />
+                    <Route path="home" element={<Home />} />
                     <Route path="deeds" element={<DeedTemplate />} />
                     <Route path="scandeed" element={<ScanDeed />} />
                     <Route path="customers" element={<Blank />} />
                     <Route path="settings" element={<Blank />} />
                     <Route path="stats" element={<Blank />} />
                     <Route path="deedform" element={<DeedForm />} />
+                    <Route path="editor" element={<Editor />} />
                 </Route>
             </Routes>
         </BrowserRouter>

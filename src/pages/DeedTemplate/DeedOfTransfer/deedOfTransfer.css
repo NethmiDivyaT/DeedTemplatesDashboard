@@ -37,4 +37,27 @@
 .h2{
   margin: auto;
   text-align: center;
+  font-size: 15px;
+}
+
+.next{
+  float:right;
+}
+
+p {
+  text-align: justify;
+}
+
+.html-view{
+  display: hidden;
+}
+
+
+
+.button{
+  margin-top: 20px;
+}
+
+.buttonT{
+  margin-bottom: 20px;
 }

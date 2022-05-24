@@ -1,58 +1,134 @@
-import { useCallback, useEffect, useState } from 'react';
-import { createWorker } from 'tesseract.js';
+import React from 'react';
+import Tesseract from 'tesseract.js';
 import './scandeed.css';
 
-function App() {
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [textResult, setTextResult] = useState("");
+const App = () => {
+    const [isLoading, setIsLoading] = React.useState(false);
+    const [image, setImage] = React.useState('');
+    const [text, setText] = React.useState('');
+    const [progress, setProgress] = React.useState(0);
+  
+    const handleSubmitE = () => {
+      setIsLoading(true);
+      Tesseract.recognize(image, 'eng',{
+          logger: (m) => {
+            console.log(m);
+            if (m.status === 'recognizing text') {
+              setProgress(parseInt(m.progress * 100));
+            }
+          },
+        })
+        .catch((err) => {
+          console.error(err);
+        })
+        .then((result) => {
+          console.log(result.data);
+          setText(result.data.text);
+          setIsLoading(false);
+        });
+  };
+  
+  const handleSubmitS = () => {
+    setIsLoading(true);
+    Tesseract.recognize(image, 'sin',{
+        logger: (m) => {
+          console.log(m);
+          if (m.status === 'recognizing text') {
+            setProgress(parseInt(m.progress * 100));
+          }
+        },
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .then((result) => {
+        console.log(result.data);
+        setText(result.data.text);
+        setIsLoading(false);
+      });
+  };
 
-  const worker = createWorker();
-
-  const convertImageToText = useCallback(async () => {
-    if(!selectedImage) return;
-    await worker.load();
-    await worker.loadLanguage("eng");
-    await worker.initialize("eng");
-    const { data } = await worker.recognize(selectedImage);
-    setTextResult(data.text);
-  }, [worker, selectedImage]);
-
-  useEffect(() => {
-    convertImageToText();
-  }, [selectedImage, convertImageToText])
-
-  const handleChangeImage = e => {
-    if(e.target.files[0]) {
-      setSelectedImage(e.target.files[0]);
-    } else {
-      setSelectedImage(null);
-      setTextResult("")
-    }
-  }
-
-  return (
-    <div className="App">
-      <h3>Deed Converter</h3>
-      <p>Gets words fro your deed image and store for further legal purposes.</p>
-      <div className="input-wrapper">
-        <label htmlFor="upload">Upload Image</label>
-        <input type="file" id="upload" accept='image/*' onChange={handleChangeImage} />
-      </div>
-
-      <div className="result">
-        {selectedImage && (
-          <div className="box-image">
-            <img src={URL.createObjectURL(selectedImage)} alt="thumb" />
+  const handleSubmitT = () => {
+    setIsLoading(true);
+    Tesseract.recognize(image, 'tam',{
+        logger: (m) => {
+          console.log(m);
+          if (m.status === 'recognizing text') {
+            setProgress(parseInt(m.progress * 100));
+          }
+        },
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .then((result) => {
+        console.log(result.data);
+        setText(result.data.text);
+        setIsLoading(false);
+      });
+  };
+  
+    return (
+      <div className="container">
+        <div className="row h-100">
+          <div className="col-md-5 mx-auto h-100 d-flex flex-column justify-content-center">
+            {!isLoading && (
+              <div>
+              <h2 className="text-center">Convert Deed To Text</h2>
+              <p className="text-center"> Convert your legal deed into digital text </p>
+              </div>
+            )}
+            {isLoading && (
+              <>
+                <progress className="form-control" value={progress} max="100">
+                  {progress}%{' '}
+                </progress>{' '}
+                <p className="text-center py-0 my-0">Converting:- {progress} %</p>
+              </>
+            )}
+            {!isLoading && !text && (
+              <>
+                <input
+                  type="file"
+                  onChange={(e) =>
+                    setImage(URL.createObjectURL(e.target.files[0]))
+                  }
+                  className="form-control mt-5 mb-2"
+                />
+                <input
+                  type="button"
+                  onClick={handleSubmitE}
+                  className="btn btn-primary mt-5"
+                  value="Convert to English Text"
+                />
+                <input
+                  type="button"
+                  onClick={handleSubmitS}
+                  className="btn btn-primary mt-5"
+                  value="Convert to Sinhala Text"
+                />
+                <input
+                  type="button"
+                  onClick={handleSubmitT}
+                  className="btn btn-primary mt-5"
+                  value="Convert to Tamil Text"
+                />
+              </>
+            )}
+            {!isLoading && text && (
+              <>
+                <textarea
+                  className="form-control w-100 mt-5"
+                  rows="30"
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+                ></textarea>
+              </>
+            )}
           </div>
-        )}
-        {textResult && (
-          <div className="box-p">
-            <p class="resultpara">{textResult}</p>
-          </div>
-        )}
+        </div>
       </div>
-    </div>
-  );
-}
-
-export default App;
+    );
+  };
+  
+  export default App;
